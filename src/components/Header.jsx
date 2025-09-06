@@ -1,6 +1,10 @@
+import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { Logo, WalletIcon } from "../utils/icons"
 
 export const Header = () => {
+  function handleConnectWallet(){
+    return <ConnectButton />
+  }
     return (
       <header className='flex justify-between items-center px-3'>
         <div className='flex items-center gap-2 px-2 py-1 cursor-pointer'>
@@ -8,7 +12,7 @@ export const Header = () => {
           <p className='text-white font-medium'>Token Portfolio</p>
         </div>
   
-        <div className='flex items-center gap-2 bg-[#A9E851] rounded-full px-2 py-1 cursor-pointer'>
+        <div className='flex items-center gap-2 bg-[#A9E851] rounded-full px-2 py-1 cursor-pointer' onClick={handleConnectWallet}>
           <WalletIcon />
           <button className='text-black'>Connect Wallet</button>
         </div>
