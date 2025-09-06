@@ -16,9 +16,9 @@ const Home = ({setOpen}) => {
     <section className='bg-[#212124] flex flex-col gap-10 py-4'>
       <Header />
 
-      <main className='bg-[#27272a] px-3 py-5 mx-8 flex justify-between rounded-lg shadow-md'>
+      <main className='bg-[#27272a] px-3 py-5 mx-8 flex max-md:flex-col max-md:gap-7 justify-between rounded-lg shadow-md'>
         <div className='flex flex-col'>
-          <div className='h-full flex flex-col justify-between'>
+          <div className='h-full flex flex-col max-md:gap-4 justify-between'>
             <div className='flex flex-col gap-2'>
               <p className='text-sm font-medium'>Portfolio Total</p>
               <h1 className='text-white text-4xl font-medium'>${formatNumber(amount)}</h1>
@@ -51,8 +51,8 @@ const Home = ({setOpen}) => {
 
           <div className='flex gap-4 items-center'>
             <button className='flex items-center gap-2 bg-[#27272a] px-3 py-2 cursor-pointer rounded-md'>
-              <img src={refershIcon} alt='refersh-icon' className='w-4' />
-              <p className='text-white'>Refresh Prices</p>
+              <img src={refershIcon} alt='refersh-icon' className='w-5 md:w-4' />
+              <p className='hidden md:inline-block text-white'>Refresh Prices</p>
             </button>
 
             <button className='flex items-center gap-2 bg-[#A9E851] px-3 py-2 cursor-pointer rounded-md' onClick={() => setOpen(true)}> 

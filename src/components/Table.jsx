@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Sparkline } from "../Charts/Sparkline";
-import { ThreeDots } from "../utils/icons";
+import { DeleteIcon, EditIcon, ThreeDots } from "../utils/icons";
 
 export const Table = () => {
     const data = [
@@ -36,12 +36,6 @@ export const Table = () => {
         },
       ];
 
-    // const [isOptionOpen,setIsOptionOption] = useState({})
-
-    // const handleEdit = (index) => {
-    //     setIsOptionOption((prev) => ({...prev, [index]: !prev[index]}) )
-    // }
-
     const [openMenu, setOpenMenu] = useState(null);
 
     const handleToggleMenu = (index) => {
@@ -49,7 +43,8 @@ export const Table = () => {
     };
 
     return (
-      <div className="border border-white/20 rounded-lg shadow-md overflow-auto">
+      <div>
+      <div className="border border-white/20 rounded-t-lg shadow-md overflow-auto">
         <table className="w-full text-sm">
           <thead className="bg-[#27272a] text-left border-b border-white/20">
             <tr className='h-12'>
@@ -104,12 +99,15 @@ export const Table = () => {
                     </button>
                     
                     {openMenu === index && (
-                  <div className="absolute right-0 mt-2 w-40 bg-[#1f1f23] border border-gray-700 rounded-md shadow-lg z-50">
-                    <button className="flex items-center w-full px-4 py-2 text-left text-gray-200 hover:bg-gray-700">
-                      ✏️ Edit Holdings
+                  <div className="absolute right-0 mt-2 w-fit bg-[#27272a] rounded-md shadow-lg z-50">
+                    <button className="flex gap-2 items-center w-full text-nowrap px-3 py-2 text-left hover:bg-[#212124] rounded-md cursor-pointer">
+                      <EditIcon />
+                       Edit Holdings
                     </button>
-                    <button className="flex items-center w-full px-4 py-2 text-left text-red-400 hover:bg-gray-700">
-                      🗑 Remove
+                    <hr className="text-white/20"/>
+                    <button className="flex gap-2 items-center w-full text-nowrap px-3 py-2 text-left text-red-400 rounded-md hover:bg-[#212124] cursor-pointer">
+                      <DeleteIcon />
+                       Remove
                     </button>
                   </div>
                 )}
@@ -118,8 +116,9 @@ export const Table = () => {
             ))}
           </tbody>
         </table>
-  
-        <div className="relative w-full flex justify-between items-center h-12 bg-[#27272a] text-sm px-6 py-3">
+      </div>
+
+      <div className=" w-full flex justify-between items-center h-12 bg-[#27272a] text-sm px-6 py-3 rounded-b-lg border border-white/20 border-t-0">
           <span>1 - 10 of 100 results</span>
           <div className="flex items-center gap-4">
             <span>1 of 10 pages</span>
@@ -128,5 +127,6 @@ export const Table = () => {
           </div>
         </div>
       </div>
+
     );
   };
