@@ -62,7 +62,7 @@ export const EditIcon = (props) => {
 export const DeleteIcon = (props) => {
     return(
     <svg {...props} width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0_2681_872)">
+        <g clipPath="url(#clip0_2681_872)">
         <path d="M1.94446 3.77778H13.0556" stroke="#FB7185" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M5.5 3.77778V2.44444C5.5 1.95378 5.89822 1.55556 6.38889 1.55556H8.61111C9.10178 1.55556 9.5 1.95378 9.5 2.44444V3.77778" stroke="#FB7185" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M11.7222 6V12.6667C11.7222 13.6489 10.9267 14.4444 9.94444 14.4444H5.05555C4.07333 14.4444 3.27777 13.6489 3.27777 12.6667V6" stroke="#FB7185" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>

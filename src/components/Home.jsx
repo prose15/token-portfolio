@@ -1,44 +1,59 @@
-import React from 'react'
-import {  PlusIcon, } from '../utils/icons.jsx'
+import React, { useEffect, useState } from 'react'
+import { PlusIcon, } from '../utils/icons.jsx'
 import starImage from '../../public/images/star.png'
 import refershIcon from "../../public/images/cached.png"
 import { Header } from './Header.jsx'
 import { DonutChart } from '../Charts/DonutChart.jsx'
 import { Table } from './Table.jsx'
+import { formatNumber } from '../utils/helpers.jsx'
+import { useSelector } from 'react-redux'
 
-const Home = ({setOpen}) => {
+const Home = ({ data, setOpen }) => {
 
-  function formatNumber(num) {
-    return num.toLocaleString("en-US");
+  const portfolio = useSelector((state) => state.portfolio)
+  
+  const amount = portfolio?.totalPrice || 0
+  const updatedAt = portfolio?.lastUpdated || 'Nan'
+  const extractPriceChanges =  data?.watchlist.map(percentage => percentage.price_change_percentage_24h)
+  const extractCoinName = data?.watchlist.map(percentage => percentage.name)
+  
+  const combineData = () => {
+    return data?.watchlist.map((percentage) => ({
+      name : percentage.name,
+      value : percentage.price_change_percentage_24h
+    }))
   }
-  const amount = 10275.08
+  const listData = combineData()
+console.log('datum', combineData(), extractCoinName,extractPriceChanges)
+
   return (
     <section className='bg-[#212124] flex flex-col gap-10 py-4'>
       <Header />
 
-      <main className='bg-[#27272a] px-3 py-5 mx-8 flex max-md:flex-col max-md:gap-7 justify-between rounded-lg shadow-md'>
+      <main className='bg-[#27272a] px-3 py-5 mx-8 grid grid-cols-1 md:grid-cols-3 md:gap-7 justify-between rounded-lg shadow-md'>
         <div className='flex flex-col'>
           <div className='h-full flex flex-col max-md:gap-4 justify-between'>
             <div className='flex flex-col gap-2'>
               <p className='text-sm font-medium'>Portfolio Total</p>
               <h1 className='text-white text-4xl font-medium'>${formatNumber(amount)}</h1>
             </div>
-            <p className='text-sm'>Last updated: 3:42:12 PM</p>
+            <p className='text-sm'>Last updated: {updatedAt}</p>
           </div>
         </div>
 
-        <div className='flex flex-col gap-3'>
-          <p className='text-sm font-medium'>Portfolio Total</p>
-          <DonutChart />
+        <div className='flex flex-col gap-3 items-end '>
+          <p className='text-sm font-medium '>Portfolio Total</p>
+          <DonutChart 
+          data={extractPriceChanges}
+          labels={extractCoinName}/>
         </div>
 
-        <div className='flex flex-col gap-3 mt-4 text-sm font-medium'>
-          <p>{14}%</p>
-          <p>{14}%</p>
-          <p>{14}%</p>
-          <p>{14}%</p>
-          <p>{14}%</p>
-          <p>{14}%</p>
+        <div className='flex flex-col justify-between gap-3 text-sm font-medium w-full'>
+          {listData.map((item)=> 
+          <div className='flex justify-between'>
+            <p>{item?.name}</p>
+            <p>{item?.value}</p>
+          </div>)}
         </div>
       </main>
 
@@ -55,7 +70,7 @@ const Home = ({setOpen}) => {
               <p className='hidden md:inline-block text-white'>Refresh Prices</p>
             </button>
 
-            <button className='flex items-center gap-2 bg-[#A9E851] px-3 py-2 cursor-pointer rounded-md' onClick={() => setOpen(true)}> 
+            <button className='flex items-center gap-2 bg-[#A9E851] px-3 py-2 cursor-pointer rounded-md' onClick={() => setOpen(true)}>
               <PlusIcon />
               <p className='text-black'>Add Tokens</p>
             </button>
@@ -64,7 +79,7 @@ const Home = ({setOpen}) => {
         </div>
 
         <div className='w-full'>
-          <Table />
+          <Table data={data} />
         </div>
       </div>
     </section>

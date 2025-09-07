@@ -15,11 +15,11 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-       <RainbowKitProvider>
-        <Provider store={store}>
-         <App />
-        </Provider>
-       </RainbowKitProvider>
+        <RainbowKitProvider>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
   </StrictMode>,
