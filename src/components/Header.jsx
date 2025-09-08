@@ -6,12 +6,11 @@ import { useEffect, useState } from "react"
 export const Header = () => {
 
     return (
-      <header className=' flex justify-between items-center px-3'>
+      <header className='fixed w-full top-0 flex justify-between items-center px-3 py-2 bg-[#212124] z-[500]'>
         <div className='flex items-center gap-2 px-2 py-1 cursor-pointer'>
           <Logo />
           <p className='text-white font-medium'>Token Portfolio</p>
         </div>
-  
 
         <ConnectWallet />
       </header>

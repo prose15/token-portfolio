@@ -51,11 +51,10 @@ const Home = ({ data, setOpen, fetchApi, loading }) => {
   }));
 
   return (
-    <section className='bg-[#212124] flex flex-col gap-10 py-4'>
+    <section className='relative bg-[#212124] flex flex-col gap-10 py-4'>
       <Header />
-
       {!data || data?.length == 0 || data?.watchlist == 0 ||loading ?
-        <div className='flex flex-col gap-7'>
+        <div className='flex flex-col gap-7 relative top-12'>
           <div className='flex justify-center bg-[#27272a] p-6 md:w-8/12 max-md:mx-3 mx-auto rounded-md shadow-md text-[#A9E851]'><p>Add items from your Watchlist to view the UI</p></div>
           <main className='bg-[#27272a] p-5 md:mx-8 grid grid-cols-1 md:grid-cols-[1fr_0.8fr_1.2fr] md:gap-3 gap-7 justify-between rounded-lg shadow-md'>
             <div className="flex flex-col justify-between">
@@ -85,7 +84,7 @@ const Home = ({ data, setOpen, fetchApi, loading }) => {
           </main>
         </div>
         :
-        <main className='bg-[#27272a] p-5 md:mx-8 grid grid-cols-1 md:grid-cols-[1fr_0.8fr_1.2fr] md:gap-3 gap-7 justify-between rounded-lg shadow-md'>
+        <main className='bg-[#27272a] relative top-12 p-5 md:mx-8 grid grid-cols-1 md:grid-cols-[1fr_0.8fr_1.2fr] md:gap-3 gap-7 justify-between rounded-lg shadow-md'>
           <div className='flex flex-col w-full'>
             <div className='h-full flex flex-col max-md:gap-4 justify-between'>
               <div className='flex flex-col gap-2'>
@@ -117,7 +116,7 @@ const Home = ({ data, setOpen, fetchApi, loading }) => {
         </main>
       }
 
-      <div className='mx-2 md:mx-8 flex flex-col gap-3'>
+      <div className=' mt-5 mx-2 md:mx-8 flex flex-col gap-3'>
         <div className='flex justify-between'>
           <div className='flex items-center gap-2'>
             <img src={starImage} alt='star-image' className='w-4' />
