@@ -29,7 +29,7 @@ export default function TokenSearchModal({ open, search, setOpen, setSearch, fil
       className="fixed inset-0 flex items-center justify-center bg-black/70 z-50" >
       <div
         ref={modalRef}
-        className="bg-[#212124] w-1/2 rounded-lg shadow-lg overflow-hidden flex flex-col">
+        className="bg-[#212124] w-full max-md:mx-3 md:w-1/2 rounded-lg shadow-lg overflow-hidden flex flex-col">
         <div className="flex items-center justify-between p-4 border-b border-gray-700">
           <input
             type="text"
