@@ -49,7 +49,13 @@ It is fully mobile-responsive and optimized for smooth user experience.
 ---
 
 ## 📸 Screenshots 
+
+-inital stage 
 image.png
+
+- after data gets added
+image.png
+
 
 ---
 
