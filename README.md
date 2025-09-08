@@ -1,12 +1,61 @@
-# React + Vite
+# Crypto Portfolio Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple yet powerful crypto portfolio tracker built with **React (Vite)**, **Redux Toolkit**, and **TailwindCSS**.  
+This application allows users to add tokens, track their holdings with real-time data, visualize performance with charts, and connect wallets using **RainbowKit** + **Wagmi**.  
+It is fully mobile-responsive and optimized for smooth user experience.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- **Initial Loading State**  
+  The app starts with an empty portfolio and shows a loading state until data is added.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Add Tokens**  
+  Use the **"Add Tokens"** option to insert tokens into your portfolio.  
+  Once added, the data is displayed along with charts for better visualization.
+
+- **Interactive Charts**  
+  Charts provide a quick overview of your portfolio’s performance and token distribution.
+
+- **Edit Holdings**  
+  Update your holdings by clicking the **three-dot icon** from the table.  
+  The data updates automatically once you make changes.
+
+- **Wallet Integration**  
+  Connect your wallet seamlessly using the **Connect Wallet** button.  
+  Once connected, a modal will appear at the top showing your wallet details.
+
+- **Real-Time Updates**  
+  Any edits to your portfolio reflect immediately across the charts and tables.
+
+- **Mobile Responsive**  
+  The entire application is designed with mobile-first principles, ensuring a smooth experience on all devices.
+
+- **Notifications**  
+  Important actions (add, edit, connect) are highlighted using **React Toastify** for better feedback.
+
+---
+
+## 🛠️ Tools & Technologies
+
+- **React (Vite)** – Frontend framework and build tool  
+- **Redux Toolkit** – State management  
+- **TailwindCSS** – Utility-first CSS framework for responsive UI  
+- **RainbowKit** – Wallet connection UI  
+- **Wagmi** – React hooks for Ethereum  
+- **React Toastify** – Toast notifications  
+
+---
+
+## 📸 Screenshots 
+image.png
+
+---
+
+## ⚡ Getting Started
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/prose15/token-portfolio
+cd your-repo
