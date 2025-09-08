@@ -8,6 +8,8 @@ import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
 import { config } from './wagmiConfig.js'
 import { Provider } from 'react-redux'
 import { store } from './redux/store.js'
+import { ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +20,7 @@ createRoot(document.getElementById('root')).render(
         <RainbowKitProvider>
           <Provider store={store}>
             <App />
+            <ToastContainer />
           </Provider>
         </RainbowKitProvider>
       </QueryClientProvider>

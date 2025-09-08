@@ -1,16 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { formatTime } from '../../utils/helpers';
-// import {formatTime} from '../../utils/helpers'
 
-const STORAGE_KEY = "portfolioState";
+const STORAGE_KEY = import.meta.env.VITE_STORAGE_KEY
 
     const loadState = () => {
       try {
         const saved = localStorage.getItem(STORAGE_KEY);
-        return saved ? JSON.parse(saved) : { watchlist: [], holdings: [], totalPrice: {}, lastUpdated: null };
+        return saved ? JSON.parse(saved) : { watchlist: [], holdings: [], totalPrice: 0, lastUpdated: null };
       } catch (err) {
         console.error("Error loading state:", err);
-        return { watchlist: [], holdings: [], totalPrice: {}, lastUpdated: null };
+        return { watchlist: [], holdings: [], totalPrice: 0, lastUpdated: null };
       }
     };
 
@@ -21,8 +20,7 @@ const STORAGE_KEY = "portfolioState";
       initialState,
       reducers: {
         addToken: (state, action) => {
-          const payload = action.payload;
-        
+          const payload = action.payload;       
           const tokens = Array.isArray(payload) ? payload : [payload];
         
           tokens.forEach((token) => {
@@ -41,57 +39,47 @@ const STORAGE_KEY = "portfolioState";
 
           const timeStamp = new Date().toISOString()
           state.lastUpdated = formatTime(timeStamp);
+          portfolioSlice.caseReducers.recalculateTotal(state)
         },
         updateHoldings: (state, action) => {
           const { id, amount } = action.payload;
         
-          // find the holding by id
           const holding = state.holdings.find((h) => h.id === id);
         
           if (holding) {
             holding.holdingAmount = amount;
           } else {
-            // optional: if holding doesn't exist, create it
             state.holdings.push({ id, holdingAmount: amount });
           }
 
           const timeStamp = new Date().toISOString()
           state.lastUpdated = formatTime(timeStamp);
+          portfolioSlice.caseReducers.recalculateTotal(state)
         },
         deleteToken: (state, action) => {
           const id = action.payload;
-        
-          // Remove from watchlist
           state.watchlist = state.watchlist.filter((t) => t.id !== id);
           const timeStamp = new Date().toISOString()
-          // Remove from holdings
           state.holdings = state.holdings.filter((h) => h.id !== id);
           state.lastUpdated = formatTime(timeStamp);
-        },
-        setPrices: (state, action) => {
-          const { id, value } = action.payload;
-        
-          state.prices = {
-            ...state.prices,
-            [id]: {
-              ...(state.prices[id] || {}),
-              value,
-            },
-          };
-        
-          state.totalPrice = Object.values(state.prices).reduce(
-            (acc, curr) => acc + (curr.value || 0),
-            0
-          );
-
-          const timeStamp = new Date().toISOString()
-          state.lastUpdated = formatTime(timeStamp);
+          portfolioSlice.caseReducers.recalculateTotal(state)
         },
         clearPortfolio: (state) => {
           state.watchlist = [];
           state.holdings = {};
           state.prices = {};
           state.lastUpdated = null;
+        },
+        recalculateTotal: (state) => {
+          let total = 0;
+    
+          state.watchlist.forEach((item) => {
+            const holding = state.holdings.find((h) => h.id === item.id);
+            const value = item.current_price * (holding?.holdingAmount ?? 0);
+            total += value;
+          });
+    
+          state.totalPrice = total;
         },
       },
     });

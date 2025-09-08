@@ -6,7 +6,7 @@ export default function TokenSearchModal({ open, search, setOpen, setSearch, fil
 
   const modalRef = useRef(null)
 
-  const disabled = !selected || selected.length == 0 ? true : false
+  const disabled =  selected.length == 0 ? true : false
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -48,7 +48,7 @@ export default function TokenSearchModal({ open, search, setOpen, setSearch, fil
               <button
                 key={idx}
                 onClick={() => handleSelect(token)}
-                className={`flex items-center justify-between w-full  hover:bg-[#27272a] transition cursor-pointer p-3 rounded-md ${selected.some((t) => t.symbol === token.symbol) ? "bg-[#A9E851]/6" : ''}`}
+                className={`flex items-center justify-between w-full  hover:bg-[#27272a] transition cursor-pointer p-3 rounded-md ${selected && selected.some((t) => t.symbol === token.symbol) ? "bg-[#A9E851]/6" : ''}`}
               >
                 <div className="flex items-center gap-3">
                   <img
@@ -61,15 +61,15 @@ export default function TokenSearchModal({ open, search, setOpen, setSearch, fil
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
-                  {selected.some((t) => t.symbol === token.symbol) && <img src={starImage} alt='star-image' className='w-3' />}
+                  {selected && selected.some((t) => t.symbol === token.symbol) && <img src={starImage} alt='star-image' className='w-3' />}
 
                   <div
-                    className={`w-3 h-3 flex items-center justify-center rounded-full border ${selected.some((t) => t.symbol === token.symbol)
+                    className={`w-3 h-3 flex items-center justify-center rounded-full border ${selected && selected.some((t) => t.symbol === token.symbol)
                       ? "border-[#A9E851] bg-[#A9E851]"
                       : "border-gray-500"
                       }`}
                   >
-                    {selected.some((t) => t.symbol === token.symbol) && (
+                    {selected && selected.some((t) => t.symbol === token.symbol) && (
                       <TickIcon className="w-3 h-3 text-black" />
                     )}
                   </div>
@@ -81,9 +81,9 @@ export default function TokenSearchModal({ open, search, setOpen, setSearch, fil
         </div>
 
         <div className="bg-[#27272a] p-2 flex justify-end">
-          <button 
-          className={`px-3 py-1 rounded-md ${disabled ? 'border border-white/20 cursor-not-allowed' : 'bg-[#A9E851] text-black cursor-pointer'}`} 
-          onClick={!disabled && handleSubmit}>
+          <button
+            className={`px-3 py-1 rounded-md ${disabled ? 'border border-white/20 cursor-not-allowed' : 'bg-[#A9E851] text-black cursor-pointer'}`}
+            onClick={!disabled && handleSubmit}>
             Add to WishList
           </button>
         </div>

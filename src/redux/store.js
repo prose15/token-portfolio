@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import portfolioReducer from './slices/PortfolioSlice.js'
 
-const STORAGE_KEY = "portfolioState";
+const STORAGE_KEY = import.meta.env.VITE_STORAGE_KEY;
 
 const loadState = () => {
   try {

@@ -1,10 +1,12 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { Logo, WalletIcon } from "../utils/icons"
+import { toast } from "react-toastify"
+import { useEffect, useState } from "react"
 
 export const Header = () => {
 
     return (
-      <header className='flex justify-between items-center px-3'>
+      <header className=' flex justify-between items-center px-3'>
         <div className='flex items-center gap-2 px-2 py-1 cursor-pointer'>
           <Logo />
           <p className='text-white font-medium'>Token Portfolio</p>
@@ -17,6 +19,7 @@ export const Header = () => {
   }
 
   function ConnectWallet () {
+    const [hasShownToast, setHasShownToast] = useState(false);
     return(
       <ConnectButton.Custom>
         {({
@@ -28,8 +31,6 @@ export const Header = () => {
         authenticationStatus,
         mounted,
       }) => {
-        // Note: If your app doesn't use authentication, you
-        // can remove all 'authenticationStatus' checks
         const ready = mounted && authenticationStatus !== 'loading';
         const connected =
           ready &&
@@ -37,6 +38,21 @@ export const Header = () => {
           chain &&
           (!authenticationStatus ||
             authenticationStatus === 'authenticated');
+
+            useEffect(() => {
+              if (connected && !hasShownToast) {
+                toast.success("Wallet connected successfully!", {
+                  position: "top-center",
+                  autoClose: 3000,
+                  theme: "dark", 
+                });
+                setHasShownToast(true);
+              } else if (!connected && hasShownToast) {
+                setHasShownToast(false);
+              }
+            }, [connected, hasShownToast]);
+
+
 
         return (
           <div
