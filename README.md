@@ -51,10 +51,10 @@ It is fully mobile-responsive and optimized for smooth user experience.
 ## 📸 Screenshots 
 
 -inital stage 
-image.png
+
 
 - after data gets added
-image.png
+
 
 
 ---
@@ -64,4 +64,4 @@ image.png
 ### 1. Clone the repository
 ```bash
 git clone https://github.com/prose15/token-portfolio
-cd your-repo
+cd token-portfolio
