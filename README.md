@@ -55,6 +55,7 @@ It is fully mobile-responsive and optimized for smooth user experience.
 
 - after data gets added
 
+![image alt](https://github.com/prose15/token-portfolio/blob/main/Screenshot%202025-09-08%20182323.png?raw=true)
 
 
 ---
